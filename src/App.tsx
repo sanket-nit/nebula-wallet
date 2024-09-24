@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from './components/ui/button';
 import { Clipboard, Import, PlusIcon, RefreshCcw, ClipboardCheckIcon } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
-import { generateMnemonic } from 'bip39'
+import { generateMnemonic } from 'bip39';
 import { useClipboard } from './hooks/clipboard';
 import { Input } from './components/ui/input';
 export default function App() {
@@ -16,18 +16,18 @@ export default function App() {
 
   function generateMnemonics() {
     const mnemonicString = generateMnemonic();
-    setMnemonics(mnemonicString.split(" "))
+    setMnemonics(mnemonicString.split(' '));
   }
 
   function handleCopy() {
-    const mnemonicString = mnemonics.join(" ");
+    const mnemonicString = mnemonics.join(' ');
     clipboard.copy(mnemonicString);
   }
 
-  function handleCreateWallet() { }
+  function handleCreateWallet() {}
 
   return (
-    <div className='my-4 flex h-screen w-screen flex-col items-center space-y-4 px-8'>
+    <div className='my-4 flex h-screen flex-col items-center space-y-4 px-8'>
       <div className='flex h-52 w-2/5 flex-col items-center justify-center space-y-4 rounded-md border px-4'>
         <p className='text-3xl'>Welcome to Nebula Wallet</p>
         <Button className='w-full' variant={'default'}>
@@ -54,7 +54,7 @@ export default function App() {
               Paste Mnemonics
             </TabsTrigger>
           </TabsList>
-          <TabsContent className='w-full grid gap-4' value='generate-mnemonics'>
+          <TabsContent className='grid w-full gap-4' value='generate-mnemonics'>
             <div className='grid w-full grid-cols-4 grid-rows-3 gap-4'>
               {mnemonics.map((val: string) => (
                 <div className='w-full rounded-lg border p-2 text-center'>{val}</div>
@@ -66,10 +66,13 @@ export default function App() {
                 Generate New
               </Button>
               <Button onClick={handleCopy}>
-                {
-                  clipboard.state === 'READY' ?
-                    <Clipboard className='me-2' /> : clipboard.state === 'SUCCESS' ? <ClipboardCheckIcon className='me-2' /> : ''
-                }
+                {clipboard.state === 'READY' ? (
+                  <Clipboard className='me-2' />
+                ) : clipboard.state === 'SUCCESS' ? (
+                  <ClipboardCheckIcon className='me-2' />
+                ) : (
+                  ''
+                )}
                 Copy All
               </Button>
             </div>
@@ -77,7 +80,6 @@ export default function App() {
           <TabsContent value='paste-mnemonics' className='w-full'>
             <Input className='w-full' placeholder='Input your mnemonics here.' />
           </TabsContent>
-
         </Tabs>
       </div>
     </div>

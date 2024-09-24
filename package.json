@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "build": "tsc && vite build",
+    "lint": "eslint \"src/**/*.{ts, tsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,ts,tsx,json}\"",
+    "format": "prettier --write 'src/**/*.{js,ts,tsx,css,md,json}' --config ./.prettierrc.cjs",
     "preview": "vite preview"
   },
   "dependencies": {
